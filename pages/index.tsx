@@ -15,6 +15,11 @@ function Home() {
             <a>Scroll Animation</a>
           </Link>
         </div>
+        <div>
+          <Link href="/infinite-animation">
+            <a>Infinite Animation</a>
+          </Link>
+        </div>
       </article>
     </div>
   );
