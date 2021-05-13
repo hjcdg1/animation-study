@@ -52,18 +52,18 @@ function ScrollAnimation() {
         .container {
           display: flex;
           flex-direction: column;
-          width: 800px;
+          width: 50rem;
         }
         .row {
           display: flex;
         }
         .entry {
           flex: 1;
-          margin: 0 10px 30px;
-          height: 300px;
+          margin: 0 0.5rem 2rem;
+          height: 20rem;
           background-color: skyblue;
           opacity: 0;
-          transform: translateY(15px);
+          transform: translateY(1rem);
           transition: all 1s;
         }
         .entry.show {
