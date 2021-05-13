@@ -1,20 +1,24 @@
 import { useRef, useEffect, RefObject } from 'react';
 
+const ROWS = 12;
+const COLUMNS = 4;
+
 function ScrollAnimation() {
-  let entryRefs: RefObject<HTMLDivElement>[][] = Array.from(Array(12), () => Array(4).fill(null));
+  const entryRefs: RefObject<HTMLDivElement>[][] = Array.from(Array(ROWS), () => Array(COLUMNS).fill(null));
   for (let i = 0; i < entryRefs.length; i++) {
     for (let j = 0; j < entryRefs[i].length; j++) {
       entryRefs[i][j] = useRef<HTMLDivElement>(null);
     }
   }
 
-  useEffect(() => {
-    function handleScroll() {
-      let entry;
-      let entryPosition;
-      for (let i = 0; i < entryRefs.length; i++) {
-        for (let j = 0; j < entryRefs[i].length; j++) {
-          entry = entryRefs[i][j].current as HTMLDivElement;
+  function handleScroll() {
+    let entry;
+    let entryPosition;
+
+    for (let i = 0; i < entryRefs.length; i++) {
+      for (let j = 0; j < entryRefs[i].length; j++) {
+        entry = entryRefs[i][j].current;
+        if (entry) {
           entryPosition = entry.getBoundingClientRect();
           if (entryPosition.bottom >= 0 && entryPosition.top <= window.innerHeight) {
             entry.classList.add('show');
@@ -22,18 +26,25 @@ function ScrollAnimation() {
         }
       }
     }
+  }
+
+  useEffect(() => {
     handleScroll();
     window.addEventListener('scroll', handleScroll);
-  });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div className="container">
-      {Array.from(Array(12).keys()).map((_, rowIdx) => {
+      {Array.from(Array(ROWS).keys()).map((_, rowIdx) => {
         return (
           <div key={rowIdx} className="row">
-            {Array.from(Array(4).keys()).map((_, columnIdx) => {
-              return <div key={columnIdx} ref={entryRefs[rowIdx][columnIdx]} className="entry"></div>;
-            })}
+            {Array.from(Array(COLUMNS).keys()).map((_, columnIdx) => (
+              <div className="entry" key={columnIdx} ref={entryRefs[rowIdx][columnIdx]}></div>
+            ))}
           </div>
         );
       })}
