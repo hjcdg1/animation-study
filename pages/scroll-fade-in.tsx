@@ -53,13 +53,19 @@ function ScrollAnimation() {
           display: flex;
           flex-direction: column;
           width: 50rem;
+          padding: 0 1rem;
+          margin: 10rem auto;
         }
         .row {
           display: flex;
+          justify-content: space-between;
+          margin-bottom: 2rem;
+        }
+        .row:last-child {
+          margin-bottom: 0;
         }
         .entry {
-          flex: 1;
-          margin: 0 0.5rem 2rem;
+          width: 23%;
           height: 20rem;
           background-color: skyblue;
           opacity: 0;

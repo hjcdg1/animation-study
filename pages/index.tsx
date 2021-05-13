@@ -19,10 +19,10 @@ function Home() {
         </h1>
         <div className="link-entry-container">
           <div className="link-entry-wrapper">
-            <Link href="/scroll-animation">
+            <Link href="/scroll-fade-in">
               <a className="link-entry">
-                스크롤 애니메이션<br />
-                <span className="gray">Scroll Animation</span>
+                스크롤 페이드 인<br />
+                <span className="gray">Scroll Fade In</span>
               </a>
             </Link>
           </div>
