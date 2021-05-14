@@ -35,10 +35,10 @@ function Home() {
             </Link>
           </div>
           <div className="link-entry-wrapper">
-            <Link href="/what-will-be-here">
+            <Link href="/infinite-carousel">
               <a className="link-entry">
-                여기엔 무엇을 넣을까<br />
-                <span className="gray">What will be here</span>
+                무한 캐러셀<br />
+                <span className="gray">Infinite Carousel</span>
               </a>
             </Link>
           </div>
