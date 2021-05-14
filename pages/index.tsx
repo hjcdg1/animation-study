@@ -43,18 +43,18 @@ function Home() {
             </Link>
           </div>
           <div className="link-entry-wrapper">
-            <Link href="/what-will-be-here">
+            <Link href="/falling-animation">
               <a className="link-entry">
-                여기엔 무엇을 넣을까<br />
-                <span className="gray">What will be here</span>
+                폴링 애니메이션<br />
+                <span className="gray">Falling Animation</span>
               </a>
             </Link>
           </div>
           <div className="link-entry-wrapper">
-            <Link href="/what-will-be-here">
+            <Link href="/mouse-pointer">
               <a className="link-entry">
-                여기엔 무엇을 넣을까<br />
-                <span className="gray">What will be here</span>
+                마우스 포인터<br />
+                <span className="gray">Mouse Pointer</span>
               </a>
             </Link>
           </div>
