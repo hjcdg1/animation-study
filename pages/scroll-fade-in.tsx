@@ -54,7 +54,7 @@ function ScrollAnimation() {
           flex-direction: column;
           width: 50rem;
           padding: 0 1rem;
-          margin: 10rem auto;
+          margin: 2rem auto;
         }
         .row {
           display: flex;

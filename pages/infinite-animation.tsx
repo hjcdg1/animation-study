@@ -12,7 +12,7 @@ function InfiniteAnimation() {
           }
         }
         .dog {
-          width: 12.5rem;
+          width: 10rem;
           margin: 3rem;
           animation-name: rotate;
           animation-iteration-count: infinite;
