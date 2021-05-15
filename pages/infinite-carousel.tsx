@@ -53,6 +53,10 @@ function InfiniteCarousel() {
     /* For infinite loop */
     if (newTranslateX <= 2 * -carouselImgTotalWidth || newTranslateX >= 0) {
       carouselImgContainer.style.transform = `translateX(-${carouselImgTotalWidth}px)`;
+
+      /* Update as if drag started at this time */
+      initialMouseX = newMouseX;
+      initialTranslateX = -carouselImgTotalWidth;
     }
     else {
       carouselImgContainer.style.transform = `translateX(${newTranslateX}px)`;
