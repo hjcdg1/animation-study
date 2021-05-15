@@ -21,48 +21,48 @@ function Home() {
           <div className="link-entry-wrapper">
             <Link href="/scroll-fade-in">
               <a className="link-entry">
-                스크롤 페이드 인<br />
-                <span className="gray">Scroll Fade In</span>
+                <span className="link-entry-text-ko">스크롤 페이드 인</span><br />
+                <span className="link-entry-text-en">Scroll Fade In</span>
               </a>
             </Link>
           </div>
           <div className="link-entry-wrapper">
             <Link href="/infinite-animation">
               <a className="link-entry">
-                무한 애니메이션<br />
-                <span className="gray">Infinite Animation</span>
+                <span className="link-entry-text-ko">무한 애니메이션</span><br />
+                <span className="link-entry-text-en">Infinite Animation</span>
               </a>
             </Link>
           </div>
           <div className="link-entry-wrapper">
             <Link href="/infinite-carousel">
               <a className="link-entry">
-                무한 캐러셀<br />
-                <span className="gray">Infinite Carousel</span>
+                <span className="link-entry-text-ko">무한 캐러셀</span><br />
+                <span className="link-entry-text-en">Infinite Carousel</span>
               </a>
             </Link>
           </div>
           <div className="link-entry-wrapper">
             <Link href="/falling-animation">
               <a className="link-entry">
-                폴링 애니메이션<br />
-                <span className="gray">Falling Animation</span>
+                <span className="link-entry-text-ko">폴링 애니메이션</span><br />
+                <span className="link-entry-text-en">Falling Animation</span>
               </a>
             </Link>
           </div>
           <div className="link-entry-wrapper">
             <Link href="/mouse-pointer">
               <a className="link-entry">
-                마우스 포인터<br />
-                <span className="gray">Mouse Pointer</span>
+                <span className="link-entry-text-ko">마우스 포인터</span><br />
+                <span className="link-entry-text-en">Mouse Pointer</span>
               </a>
             </Link>
           </div>
           <div className="link-entry-wrapper">
             <Link href="/what-will-be-here">
               <a className="link-entry">
-                여기엔 무엇을 넣을까<br />
-                <span className="gray">What will be here</span>
+                <span className="link-entry-text-ko">여기엔 무엇을 넣을까</span><br />
+                <span className="link-entry-text-en">What will be here</span>
               </a>
             </Link>
           </div>
@@ -81,6 +81,8 @@ function Home() {
           top: 25%;
           left: 17%;
           transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
           margin: 0;
           font-family: 'Nanum Pen Script', cursive;
           font-size: 5rem;
@@ -94,9 +96,16 @@ function Home() {
           top: 35%;
           left: 50%;
           transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
           display: flex;
+          display: -webkit-box;
+          display: -ms-flexbox;
           flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
           justify-content: center;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
           width: 33%;
         }
         .link-entry-wrapper {
@@ -111,14 +120,18 @@ function Home() {
           padding: 0.5rem;
           border-radius: 0.5rem;
           background-color: #ffffff;
-          font-family: 'Nanum Pen Script', cursive;
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: #444444;
           text-align: center;
         }
-        .link-entry > .gray {
-          font-weight: normal;
+        .link-entry-text-ko,
+        .link-entry-text-en {
+          font-family: 'Nanum Pen Script', cursive;
+          font-size: 1.5rem;
+        }
+        .link-entry-text-ko {
+          font-weight: bold;
+          color: #444444;
+        }
+        .link-entry-text-en {
           color: #888888;
         }
         @media screen and (max-width: 1199px) {
@@ -136,7 +149,8 @@ function Home() {
           .link-entry-wrapper {
             max-width: 13rem;
           }
-          .link-entry {
+          .link-entry-text-ko,
+          .link-entry-text-en {
             font-size: 1.4rem;
           }
         }
@@ -144,7 +158,8 @@ function Home() {
           .main-header {
             font-size: 3.5rem;
           }
-          .link-entry {
+          .link-entry-text-ko,
+          .link-entry-text-en {
             font-size: 1.3rem;
           }
         }

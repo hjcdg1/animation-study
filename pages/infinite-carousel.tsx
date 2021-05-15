@@ -1,12 +1,14 @@
 import { useRef, useEffect, RefObject } from 'react';
 
 function InfiniteCarousel() {
+  /* Ref 선언 및 초기화 */
   const carouselImgContainerRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const carouselImgRefs: RefObject<HTMLDivElement>[] = Array(7).fill(null);
   for (let i = 0; i < carouselImgRefs.length; i++) {
     carouselImgRefs[i] = useRef<HTMLDivElement>(null);
   }
 
+  /* 캐러셀 관련 지역 변수 선언 */
   let carouselImgContainer: HTMLDivElement;
   let carouselImgTotalWidth: number = 0;
   let initialMouseX: number;
@@ -70,12 +72,12 @@ function InfiniteCarousel() {
   }
 
   useEffect(() => {
-    let carouselImg;
-    let carouselImgsToBePrepended = [];
-    let carouselImgsToBeAppended = [];
+    const carouselImgsToBePrepended = [];
+    const carouselImgsToBeAppended = [];
 
     carouselImgContainer = carouselImgContainerRef.current as HTMLDivElement;
 
+    let carouselImg;
     for (let i = 0; i < carouselImgRefs.length; i++) {
       carouselImg = carouselImgRefs[i].current as HTMLDivElement;
       carouselImgsToBePrepended.push(carouselImg.cloneNode(true));
@@ -87,7 +89,7 @@ function InfiniteCarousel() {
     carouselImgContainer.prepend(...carouselImgsToBePrepended);
     carouselImgContainer.append(...carouselImgsToBeAppended);
 
-    /* Adjust existing position of images to center */
+    /* Adjust position of existing images to the center */
     carouselImgContainer.style.transform = `translateX(-${carouselImgTotalWidth}px)`;
 
     /* Add drag start event listeners */
@@ -96,21 +98,22 @@ function InfiniteCarousel() {
   }, [])
 
   return (
-    <div className="container">
-      <div className="carousel-wrapper">
-        <div className="carousel">
-          <div className="carousel-img-container" ref={carouselImgContainerRef}>
-            <div className="carousel-img red" ref={carouselImgRefs[0]}></div>
-            <div className="carousel-img orange" ref={carouselImgRefs[1]}></div>
-            <div className="carousel-img yellow" ref={carouselImgRefs[2]}></div>
-            <div className="carousel-img green" ref={carouselImgRefs[3]}></div>
-            <div className="carousel-img blue" ref={carouselImgRefs[4]}></div>
-            <div className="carousel-img indigo" ref={carouselImgRefs[5]}></div>
-            <div className="carousel-img purple" ref={carouselImgRefs[6]}></div>
+    <>
+      <div className="container">
+        <div className="carousel-wrapper">
+          <div className="carousel">
+            <div className="carousel-img-container" ref={carouselImgContainerRef}>
+              <div className="carousel-img red" ref={carouselImgRefs[0]}></div>
+              <div className="carousel-img orange" ref={carouselImgRefs[1]}></div>
+              <div className="carousel-img yellow" ref={carouselImgRefs[2]}></div>
+              <div className="carousel-img green" ref={carouselImgRefs[3]}></div>
+              <div className="carousel-img blue" ref={carouselImgRefs[4]}></div>
+              <div className="carousel-img indigo" ref={carouselImgRefs[5]}></div>
+              <div className="carousel-img purple" ref={carouselImgRefs[6]}></div>
+            </div>
           </div>
         </div>
       </div>
-      <div id="123"></div>
       <style jsx>{`
         .container {
           width: 100%;
@@ -126,10 +129,15 @@ function InfiniteCarousel() {
         }
         .carousel-img-container {
           display: flex;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
           flex-wrap: nowrap;
         }
         .carousel-img {
           flex-shrink: 0;
+          -ms-flex-negative: 0;
           height: 10rem;
         }
         .carousel-img.red {
@@ -156,12 +164,12 @@ function InfiniteCarousel() {
           width: 10rem;
           background-color: indigo;
         }
-        .carousel-img.indigo {
+        .carousel-img.purple {
           width: 8rem;
           background-color: purple;
         }
       `}</style>
-    </div>
+    </>
   );
 }
 
