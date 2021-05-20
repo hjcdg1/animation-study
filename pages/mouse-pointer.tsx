@@ -8,16 +8,18 @@ function MousePointer() {
 
   useEffect(() => {
     window.addEventListener('mousemove', (e) => {
-      const pig = pigRef.current as HTMLDivElement;
-      const rabbit = rabbitRef.current as HTMLDivElement;
-      const horse = horseRef.current as HTMLDivElement;
+      const pig = pigRef.current;
+      const rabbit = rabbitRef.current;
+      const horse = horseRef.current;
 
-      pig.style.left = `${e.pageX - 10}px`;
-      pig.style.top = `${e.pageY - 10}px`;
-      rabbit.style.left = `${e.pageX - 25}px`;
-      rabbit.style.top = `${e.pageY + 5}px`;
-      horse.style.left = `${e.pageX - 40}px`;
-      horse.style.top = `${e.pageY + 20}px`;
+      if (pig && rabbit && horse) {
+        pig.style.left = `${e.pageX - 10}px`;
+        pig.style.top = `${e.pageY - 10}px`;
+        rabbit.style.left = `${e.pageX - 25}px`;
+        rabbit.style.top = `${e.pageY + 5}px`;
+        horse.style.left = `${e.pageX - 40}px`;
+        horse.style.top = `${e.pageY + 20}px`;
+      }
     });
   }, []);
 
