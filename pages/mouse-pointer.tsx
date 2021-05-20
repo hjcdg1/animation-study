@@ -45,21 +45,21 @@ function MousePointer() {
         }
         .pig {
           width: 20px;
-          transition: all 0.05s linear;
-          -webkit-transition: all 0.05s linear;
-          -o-transition: all 0.05s linear;
+          transition: all 0.1s ease-out;
+          -webkit-transition: all 0.1s ease-out;
+          -o-transition: all 0.1s ease-out;
         }
         .rabbit {
           width: 16px;
-          transition: all 0.1s linear;
-          -webkit-transition: all 0.1s linear;
-          -o-transition: all 0.1s linear;
+          transition: all 0.2s ease-out;
+          -webkit-transition: all 0.2s ease-out;
+          -o-transition: all 0.2s ease-out;
         }
         .horse {
           width: 12px;
-          transition: all 0.2s linear;
-          -webkit-transition: all 0.2s linear;
-          -o-transition: all 0.2s linear;
+          transition: all 0.3s ease-out;
+          -webkit-transition: all 0.3s ease-out;
+          -o-transition: all 0.3s ease-out;
         }
         .pig > img,
         .rabbit > img,
