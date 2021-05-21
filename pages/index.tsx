@@ -59,10 +59,10 @@ function Home() {
             </Link>
           </div>
           <div className="link-entry-wrapper">
-            <Link href="/what-will-be-here">
+            <Link href="/bubble-effect">
               <a className="link-entry">
-                <span className="link-entry-text-ko">여기엔 무엇을 넣을까</span><br />
-                <span className="link-entry-text-en">What will be here</span>
+                <span className="link-entry-text-ko">거품 효과</span><br />
+                <span className="link-entry-text-en">Bubble Effect</span>
               </a>
             </Link>
           </div>
