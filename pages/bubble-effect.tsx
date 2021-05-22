@@ -9,7 +9,7 @@ function BubbleEffect() {
 
     let canvasWidth = c1.width = c2.width = window.innerWidth;
     let canvasHeight = c1.height = c2.height = window.innerHeight;
-    let sizeBase: number = canvasWidth + canvasHeight;
+    let sizeBase = canvasWidth + canvasHeight;
     let parts = [] as {
       x: number;
       y: number;
