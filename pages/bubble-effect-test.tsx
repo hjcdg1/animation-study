@@ -5,14 +5,14 @@ function BubbleEffectTest() {
     const c = document.getElementById('c') as HTMLCanvasElement;
     const context = c.getContext('2d') as CanvasRenderingContext2D;
 
-    c.width = window.innerWidth;
-    c.height = window.innerHeight;
-
     function hsla(h: number, s: number, l: number, a: number): string {
       return `hsla(${h}, ${s}%, ${l}%, ${a})`;
     }
 
     function drawCanvas() {
+      c.width = window.innerWidth;
+      c.height = window.innerHeight;
+
       context.clearRect(0, 0, c.width, c.height);
       context.globalCompositeOperation = 'lighter';
 
@@ -31,16 +31,9 @@ function BubbleEffectTest() {
       context.fill();
     }
 
-    function initCanvas() {
-      c.width = window.innerWidth;
-      c.height = window.innerHeight;
-
-      drawCanvas();
-    }
-
     /* Initialization */
-    initCanvas();
-    window.addEventListener('resize', initCanvas);
+    drawCanvas();
+    window.addEventListener('resize', drawCanvas);
   }, []);
 
   return (
