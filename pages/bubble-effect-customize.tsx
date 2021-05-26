@@ -41,15 +41,34 @@ function BubbleEffectCustomize() {
       /* 채우기 색과 그림자 색이 섞이도록 함 */
       contextBackground.globalCompositeOperation = 'lighter';
 
-      /* 곡선 그리기 */
+      /* 곡선 그리기 (영역 1 채우기) */
       contextBackground.beginPath();
       contextBackground.moveTo(0, 300);
-      contextBackground.bezierCurveTo(1 / 10 * canvasWidth, 500, 3 / 8 * canvasWidth, 337.5, 1 / 2 * canvasWidth, 400);
-      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, 550, canvasWidth, 300, canvasWidth, 300);
+      contextBackground.bezierCurveTo(1 / 3 * canvasWidth, 150, 2 / 3 * canvasWidth, 450, canvasWidth, 300);
       contextBackground.lineTo(canvasWidth, 0);
       contextBackground.lineTo(0, 0);
       contextBackground.lineTo(0, 300);
-      contextBackground.fillStyle = 'rgb(125, 113, 234)'
+      contextBackground.fillStyle = 'rgb(125, 113, 234)';
+      contextBackground.fill();
+
+      /* 곡선 그리기 (영역 2 채우기) */
+      contextBackground.beginPath();
+      contextBackground.moveTo(0, 300);
+      contextBackground.bezierCurveTo(1 / 3 * canvasWidth, 150, 2 / 3 * canvasWidth, 450, canvasWidth, 300);
+      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, 550, 1 / 2 * canvasWidth, 400, 1 / 2 * canvasWidth, 400);
+      contextBackground.bezierCurveTo(3 / 8 * canvasWidth, 337.5, 1 / 10 * canvasWidth, 500, 0, 300);
+      contextBackground.fillStyle = 'rgb(168, 136, 245)';
+      contextBackground.fill();
+
+      /* 곡선 그리기 (영역 2 채우기) */
+      contextBackground.beginPath();
+      contextBackground.moveTo(canvasWidth, 300);
+      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, 550, 1 / 2 * canvasWidth, 400, 1 / 2 * canvasWidth, 400);
+      contextBackground.bezierCurveTo(3 / 8 * canvasWidth, 337.5, 1 / 10 * canvasWidth, 500, 0, 300);
+      contextBackground.lineTo(0, canvasHeight);
+      contextBackground.lineTo(canvasWidth, canvasHeight);
+      contextBackground.lineTo(canvasWidth, 300);
+      contextBackground.fillStyle = 'rgb(240, 240, 255)';
       contextBackground.fill();
     }
 
@@ -160,9 +179,6 @@ function BubbleEffectCustomize() {
         }
         #canvas-background {
           opacity: 0;
-        }
-        #canvas-floating {
-          background: rgb(229, 226, 242);
         }
       `}</style>
     </>
