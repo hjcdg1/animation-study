@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 
-function BubbleEffectSimple() {
+function BubbleEffectCustomize() {
   useEffect(() => {
+    const canvasBackground = document.getElementById('canvas-background') as HTMLCanvasElement;
     const canvasFloating = document.getElementById('canvas-floating') as HTMLCanvasElement;
+    const contextBackground = canvasBackground.getContext('2d') as CanvasRenderingContext2D;
     const contextFloating = canvasFloating.getContext('2d') as CanvasRenderingContext2D;
 
     let canvasWidth: number;
@@ -26,15 +28,29 @@ function BubbleEffectSimple() {
     }
 
     function initCanvas() {
-      canvasWidth = canvasFloating.width = window.innerWidth;
-      canvasHeight = canvasFloating.height = window.innerHeight;
+      canvasWidth = canvasBackground.width = canvasFloating.width = window.innerWidth;
+      canvasHeight = canvasBackground.height = canvasFloating.height = window.innerHeight;
       sizeBase = canvasWidth + canvasHeight;
       floatingBubbles = [];
+    }
 
-      /* 움직이는 거품 그리기 준비 */
-      contextFloating.globalCompositeOperation = 'lighter';
-      contextFloating.shadowColor = '#ffffff';
-      contextFloating.shadowBlur = 10;
+    function drawCanvasBackground() {
+      /* 캔버스 지우기 */
+      contextBackground.clearRect(0, 0, canvasWidth, canvasHeight);
+
+      /* 채우기 색과 그림자 색이 섞이도록 함 */
+      contextBackground.globalCompositeOperation = 'lighter';
+
+      /* 곡선 그리기 */
+      contextBackground.beginPath();
+      contextBackground.moveTo(0, 300);
+      contextBackground.bezierCurveTo(1 / 10 * canvasWidth, 500, 3 / 8 * canvasWidth, 337.5, 1 / 2 * canvasWidth, 400);
+      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, 550, canvasWidth, 300, canvasWidth, 300);
+      contextBackground.lineTo(canvasWidth, 0);
+      contextBackground.lineTo(0, 0);
+      contextBackground.lineTo(0, 300);
+      contextBackground.fillStyle = 'rgb(125, 113, 234)'
+      contextBackground.fill();
     }
 
     function constructFloatingBubbles() {
@@ -46,7 +62,7 @@ function BubbleEffectSimple() {
 
       /* 원 반지름 */
       const radiusMin = 1;
-      const radiusMax = sizeBase * 0.03;
+      const radiusMax = sizeBase * 0.015;
 
       /* 원 이동 방향 */
       const angleMin = 0;
@@ -61,7 +77,7 @@ function BubbleEffectSimple() {
       const tickMax = 10000;
 
       /* 움직이는 거품 그리기 위한 정보 구성 */
-      for (let i = 0; i < Math.floor(sizeBase * 0.02); i++) {
+      for (let i = 0; i < Math.floor(sizeBase * 0.015); i++) {
         floatingBubbles.push({
           x: rand(xMin, xMax),
           y: rand(yMin, yMax),
@@ -79,6 +95,16 @@ function BubbleEffectSimple() {
       /* 캔버스 지우기 */
       contextFloating.clearRect(0, 0, canvasWidth, canvasHeight);
 
+      /* 백그라운드 곡선 그리기 */
+      contextFloating.globalCompositeOperation = 'source-over';
+      contextFloating.shadowBlur = 0;
+      contextFloating.drawImage(canvasBackground, 0, 0);
+
+      /* 움직이는 거품 그리기 준비 */
+      contextFloating.globalCompositeOperation = 'lighter';
+      contextFloating.shadowColor = '#ffffff';
+      contextFloating.shadowBlur = 10;
+
       /* 움직이는 거품 그리기 */
       for (let i = 0; i < floatingBubbles.length; i++) {
         const floatingBubble = floatingBubbles[i];
@@ -87,7 +113,7 @@ function BubbleEffectSimple() {
         contextFloating.beginPath();
         contextFloating.arc(floatingBubble.x, floatingBubble.y, floatingBubble.radius, 0, 2 * Math.PI);
         contextFloating.closePath();
-        contextFloating.fillStyle = hsla(0, 0, 100, 0.2 + Math.cos(floatingBubble.tick * 0.02) * 0.05);
+        contextFloating.fillStyle = hsla(0, 0, 100, 0.1 + Math.cos(floatingBubble.tick * 0.02) * 0.05);
         contextFloating.fill();
 
         /* 거품 이동 */
@@ -107,11 +133,13 @@ function BubbleEffectSimple() {
     }
 
     initCanvas();
+    drawCanvasBackground();
     constructFloatingBubbles();
     drawFloatingBubbles();
 
     window.addEventListener('resize', () => {
       initCanvas();
+      drawCanvasBackground();
       constructFloatingBubbles();
     });
   }, []);
@@ -119,6 +147,7 @@ function BubbleEffectSimple() {
   return (
     <>
       <div className="container">
+        <canvas id="canvas-background"></canvas>
         <canvas id="canvas-floating"></canvas>
       </div>
       <style jsx>{`
@@ -129,12 +158,15 @@ function BubbleEffectSimple() {
           bottom: 0;
           left: 0;
         }
+        #canvas-background {
+          opacity: 0;
+        }
         #canvas-floating {
-          background: rgba(111, 220, 217, 0.7);
+          background: rgb(229, 226, 242);
         }
       `}</style>
     </>
   );
 }
 
-export default BubbleEffectSimple;
+export default BubbleEffectCustomize;
