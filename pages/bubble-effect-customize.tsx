@@ -1,9 +1,13 @@
-import { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 function BubbleEffectCustomize() {
+  /* Ref 선언 및 초기화 */
+  const canvasBackgroundRef = useRef<HTMLCanvasElement>(null);
+  const canvasFloatingRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
-    const canvasBackground = document.getElementById('canvas-background') as HTMLCanvasElement;
-    const canvasFloating = document.getElementById('canvas-floating') as HTMLCanvasElement;
+    const canvasBackground = canvasBackgroundRef.current as HTMLCanvasElement;
+    const canvasFloating = canvasFloatingRef.current as HTMLCanvasElement;
     const contextBackground = canvasBackground.getContext('2d') as CanvasRenderingContext2D;
     const contextFloating = canvasFloating.getContext('2d') as CanvasRenderingContext2D;
 
@@ -28,8 +32,8 @@ function BubbleEffectCustomize() {
     }
 
     function initCanvas() {
-      canvasWidth = canvasBackground.width = canvasFloating.width = window.innerWidth;
-      canvasHeight = canvasBackground.height = canvasFloating.height = window.innerHeight;
+      canvasWidth = canvasBackground.width = canvasFloating.width = document.body.offsetWidth;
+      canvasHeight = canvasBackground.height = canvasFloating.height = document.body.offsetHeight;
       sizeBase = canvasWidth + canvasHeight;
       floatingBubbles = [];
     }
@@ -165,19 +169,23 @@ function BubbleEffectCustomize() {
 
   return (
     <>
-      <div className="container">
-        <canvas id="canvas-background"></canvas>
-        <canvas id="canvas-floating"></canvas>
+      <div className="container"></div>
+      <div className="canvas-container">
+        <canvas className="canvas-background" ref={canvasBackgroundRef}></canvas>
+        <canvas className="canvas-floating" ref={canvasFloatingRef}></canvas>
       </div>
       <style jsx>{`
-        canvas {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
+        .container {
+          position: relative;
+          z-index: 1;
+          height: 1500px;
         }
-        #canvas-background {
+        .canvas-background,
+        .canvas-floating {
+          position: absolute;
+          inset: 0;
+        }
+        .canvas-background {
           opacity: 0;
         }
       `}</style>
