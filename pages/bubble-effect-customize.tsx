@@ -45,10 +45,14 @@ function BubbleEffectCustomize() {
       /* 채우기 색과 그림자 색이 섞이도록 함 */
       contextBackground.globalCompositeOperation = 'lighter';
 
+      const ratio = canvasWidth / 1500;
+      const [p1, p2] = [200 - 50 * ratio, 400 + 50 * ratio];
+      const [p3, p4] = [425 + 50 * ratio, 375 + 125 * ratio];
+
       /* 곡선 그리기 (영역 1 채우기) */
       contextBackground.beginPath();
       contextBackground.moveTo(0, 300);
-      contextBackground.bezierCurveTo(1 / 3 * canvasWidth, 150, 2 / 3 * canvasWidth, 450, canvasWidth, 300);
+      contextBackground.bezierCurveTo(1 / 3 * canvasWidth, p1, 2 / 3 * canvasWidth, p2, canvasWidth, 300);
       contextBackground.lineTo(canvasWidth, 0);
       contextBackground.lineTo(0, 0);
       contextBackground.lineTo(0, 300);
@@ -58,17 +62,17 @@ function BubbleEffectCustomize() {
       /* 곡선 그리기 (영역 2 채우기) */
       contextBackground.beginPath();
       contextBackground.moveTo(0, 300);
-      contextBackground.bezierCurveTo(1 / 3 * canvasWidth, 150, 2 / 3 * canvasWidth, 450, canvasWidth, 300);
-      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, 550, 1 / 2 * canvasWidth, 400, 1 / 2 * canvasWidth, 400);
-      contextBackground.bezierCurveTo(3 / 8 * canvasWidth, 337.5, 1 / 10 * canvasWidth, 500, 0, 300);
+      contextBackground.bezierCurveTo(1 / 3 * canvasWidth, p1, 2 / 3 * canvasWidth, p2, canvasWidth, 300);
+      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, p3, 1 / 2 * canvasWidth, 350, 1 / 2 * canvasWidth, 350);
+      contextBackground.bezierCurveTo(3 / 8 * canvasWidth, 308, 1 / 10 * canvasWidth, p4, 0, 300);
       contextBackground.fillStyle = 'rgb(168, 136, 245)';
       contextBackground.fill();
 
       /* 곡선 그리기 (영역 2 채우기) */
       contextBackground.beginPath();
       contextBackground.moveTo(canvasWidth, 300);
-      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, 550, 1 / 2 * canvasWidth, 400, 1 / 2 * canvasWidth, 400);
-      contextBackground.bezierCurveTo(3 / 8 * canvasWidth, 337.5, 1 / 10 * canvasWidth, 500, 0, 300);
+      contextBackground.bezierCurveTo(4 / 5 * canvasWidth, p3, 1 / 2 * canvasWidth, 350, 1 / 2 * canvasWidth, 350);
+      contextBackground.bezierCurveTo(3 / 8 * canvasWidth, 308, 1 / 10 * canvasWidth, p4, 0, 300);
       contextBackground.lineTo(0, canvasHeight);
       contextBackground.lineTo(canvasWidth, canvasHeight);
       contextBackground.lineTo(canvasWidth, 300);
